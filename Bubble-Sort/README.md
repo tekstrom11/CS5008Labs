@@ -5,6 +5,15 @@ For this activity you will be writing a simple bubble sort, while discussing abo
 
 Sorts are often openly available online, so the real key over the next two weeks is understanding which sort to use in which situation.
 
+The goals for this team activity are as follows:
+* Better understand bubble sort
+* Discuss and describe Quadratic sorts
+* Explore runtime of applications
+
+## :star: Working in Teams :star:
+When working in teams, remember do not let one person do all the work. Make sure to work together, and ask questions. It is also better if different people program, and you all take turns programming for various team assignments. 
+
+
 ## Bubble Sort
 Bubble Sort is one of the oldest sorts, and if you line people up asking them to sort by their names, they will often default to a bubble sort. 
 
@@ -66,7 +75,7 @@ Right now, the bubble sort doesn't work! (you have to write it). But the sort bu
 ```
 (the print doesn't work with the built in c library as it isn't an option.)
 
-### Writing Swap (10 minutes)
+### Writing Swap 
 To write the bubble sort, the first you need to do is write a 'swap' function.  The template has been provided in `sort_helper.h`.
 
 ```c
@@ -80,7 +89,7 @@ The idea is to take two values and swap, so if a comes in with 20, and b comes i
 
 Go ahead and work on this as a group. 
 
-### Writing Bubble Sort (40 Minutes)
+### Writing Bubble Sort 
 While bubble sort is well documented you should try writing it, talking it through with your partners. A bubble sort will be two nested for loops. One that goes through the entire array, and one that is performing the swaps on each number. The print should be setup in the 'outer-loop' so you can see what the array looks like after each pass. Don't forget to put `if(print)` before your print, or your code may slow down considerably when you are testing large arrays. 
 
 
@@ -125,7 +134,7 @@ Work each one out on paper - similar to how you did for the 5 value array above 
 
 ## Technical Interview Practice
 
-Lastly, work on modules 03 leet code practice. Everyone pick a different problem, and take turns explaining your solution *as* you work through the code (as time allows). This is called "live coding" and often required in technical interviews. Moving forward, we would like you to emphasize the explaining of code as you work through it, to better prepare you for technical interviews. You should also discuss one of the technical interview questions as a group. 
+Lastly, work on leet code practice. Everyone pick a different problem, and take turns explaining your solution *as* you work through the code (as time allows). This is called "live coding" and often required in technical interviews. Moving forward, we would like you to emphasize the explaining of code as you work through it, to better prepare you for technical interviews. You should also discuss one of the technical interview questions as a group. 
 
 
 ## 📚 Resources
