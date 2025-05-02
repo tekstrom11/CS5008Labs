@@ -11,8 +11,17 @@ Why because with pure functions, you have the following properties (source wikip
 1. the function return values are identical for identical arguments 
 2. the function has no side effects 
 
-In this lab, you will explore adding [memorization] to Pascal's Triangle and exploring the differences
+In this lab, you will explore adding [memoization] to Pascal's Triangle and exploring the differences
 in speed. This will help you practice for the midterm project. 
+
+
+The goals for this team activity are as follows:
+* To practice memoization through pascals triangle 
+* Discuss how Dynamic Programming influences runtime complexity by adding space complexity
+
+
+## :star: Working in Teams :star:
+When working in teams, remember do not let one person do all the work. Make sure to work together, and ask questions. It is also better if different people program, and you all take turns programming for various team assignments. 
 
 
 ## Dynamic Programming Warm Up Discussion
@@ -78,13 +87,13 @@ noting for future reference.
 
 
 ```text
-gcc -Wall pascal.c -o pascal.exe
+gcc -Wall pascal.c -o pascal.out
 ```
 
 You could run the following to produce the following output:
 
 ```text
-./pascal.exe 10 0 print
+./pascal.out 10 0 print
 iterative version
 1 10 45 120 210 252 210 120 45 10 1 
 time: 0.000007(55)
@@ -93,7 +102,7 @@ time: 0.000007(55)
 or
 
 ```text
-./pascal.exe 10 1 print
+./pascal.out 10 1 print
 recursive version
 1 10 45 120 210 252 210 120 45 10 1 
 time: 0.000005(1013)
