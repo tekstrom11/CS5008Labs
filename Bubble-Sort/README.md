@@ -131,6 +131,11 @@ With your group, talk about the differences between Insertion, Bubble, and Selec
 
 Work each one out on paper - similar to how you did for the 5 value array above for bubble sort. Make you use the [visualize] tool to better understand!
 
+> [!NOTE]
+> Stretch goal: you can include an operations counter. We recommend setting the counter
+> to a flag, so you can enable the counter showing or not. This may help you 
+> see the $O(n^2)$ curve easier. 
+
 
 ## Technical Interview Practice
 
