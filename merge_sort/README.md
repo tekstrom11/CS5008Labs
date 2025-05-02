@@ -1,6 +1,7 @@
-# Team Activity - Sorting Part 2: Merge Sort
+# Lab- Sorting Part 2: Merge Sort
 
-> This activity builds on your Homework 05 and Lab - Sorting. While we have provided template files here, you will want to merge (pun intended) this code into your Homework 05.  Please make sure to give credit on who worked on this code with you. As a reminder, the stuff done in team activities are the team's work, but your other homework requirements are your *own* (don't plagiarize!)
+> [!IMPORTANT]
+> This activity builds on your Homework and Lab - Sorting. While we have provided template files here, you will want to merge (pun intended) this code into your Homework 05.  Please make sure to give credit on who worked on this code with you. As a reminder, the stuff done in team activities are the team's work, but your other homework requirements are your *own* (don't plagiarize!)
 
 👉🏽 **Task**: As a group you will implement the `merge` and the `mergeSort` function in [sorts.h](sorts.h). 
 
@@ -8,6 +9,13 @@ Merge sort is a [divide and conquer algorithm] that was invented by [John von Ne
 
 > Yes, the same von Neumann who designed [modern computer architecture]. 
 
+The goals for this team activity are as follows:
+* To implement merge sort as a group
+* To better understand divide and conquer type algorithms
+  
+  
+## :star: Working in Teams :star:
+When working in teams, remember do not let one person do all the work. Make sure to work together, and ask questions. It is also better if different people program, and you all take turns programming for various team assignments. 
 
 ## Merge sort works as follows:
 
@@ -100,11 +108,19 @@ It is also easy to forget to copy the remainder of the array into temp that hasn
 In the end, you end up with 3 while loops (not nested!). 
 
 
+
 ### Discuss and Build
 Work together with your partners to build the merge function. While the code is provided online, it is important to understand each step, so take piece of paper out and draw samples.  Comment in the code with your understanding.
 
 > **Challenging**:  
-> The merge sort is a challenging algorithm, that looks simple after it is completed. It is why we are doing it in a group, and you are free to use online resources if you get stuck. Just make sure you **understand** what is going on. 
+> The merge sort is a challenging algorithm, that looks simple after it is completed. It is why we are doing it in a group, and you are free to use online resources if you get stuck. Just make sure you **understand** what is going on.
+>
+
+
+> [!NOTE]
+> You are welcome to add a operations counter, and see how the operations look.
+> However, we recommend you setting a print flag for the ops counter, 
+> so it doesn't mess up your homework output. 
 
 ## Other Sorts?
 Take time to search additional sorts online (there are a *ton* of them). Each person should find a sort, and describe to the group what situations it is best used for. Even better if you can find a visualization for that sort. 
@@ -112,7 +128,7 @@ Take time to search additional sorts online (there are a *ton* of them). Each pe
 
 ## Technical Interview Practice
 
-Lastly, work on modules 04 leet code practice. Everyone pick a different problem, and take turns explaining your solution *as* you work through the code (as time allows). This is called "live coding" and often required in technical interviews. Moving forward, we would like you to emphasize the explaining of code as you work through it, to better prepare you for technical interviews. You should also discuss one of the technical interview questions as a group. 
+Lastly, work on leet code practice. Everyone pick a different problem, and take turns explaining your solution *as* you work through the code (as time allows). This is called "live coding" and often required in technical interviews. Moving forward, we would like you to emphasize the explaining of code as you work through it, to better prepare you for technical interviews. You should also discuss one of the technical interview questions as a group. 
 
 ## 📚 Resources
 * [Merge Sort on Khan](https://www.khanacademy.org/computing/computer-science/algorithms/merge-sort/a/divide-and-conquer-algorithms)
