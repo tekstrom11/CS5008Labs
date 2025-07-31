@@ -182,7 +182,8 @@ Look at the file, and run various tests.
     * One at a time -> Addition, XOR, Shift
   * Do the ones that perform better come at an increased cost?
     * No! 
-    * Simple -> Technically the fastest, but
+    * Simple -> Technically the fastest, but has lots of collisions
+   
    
     * DJB2 -> Slightly more expensive than simple_hash, but much better distribution. Using shift+add makes it nearly as fast as simple_hash.
     * FNV ->  Multiplication is a bit more expensive than addition, but still fast. Good distribution.
