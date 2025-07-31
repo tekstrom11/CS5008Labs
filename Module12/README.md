@@ -76,6 +76,11 @@ Collisions: 22, Highest: 2, Average Length > 1: 2.00, Filled Spots: 989, Load: 0
 The first two lines are high because those functions are not implemented yet, so only returning 0. 
 
 > Discussion: What does each value represent out of Collisions, Highest, Average Length > 1, Filled Spots, and Load. Make sure to discuss together what is the ideal load balance num.
+> * Total - number of collisions that occured (when array[i] > 1)
+> * Load  - the fraction of table occupied (counter/SIZE)
+> * Filled - number of spots occupied
+> * Highest - Spot with the most collisions (longest collision chain)
+> * Average Length > 1 - Average length of collisions (total/length)
 
 
 ## 👉🏽 **Task**: Write Simple Hash
@@ -83,9 +88,8 @@ The first two lines are high because those functions are not implemented yet, so
 Using your notes from the class videos or on your own, write a simple hash that that adds the ASCII value of the characters. As a reminder, just casting a character as an int gives you the ascii value, so you can loop through every character in the string, and
 just add the values of those characters.
 
-> Discussion: How effective is the "simple hash" compared to the other
-two hashes that are implemented - for this particular dataset"? 
-
+> Discussion: How effective is the "simple hash" compared to the other two hashes that are implemented - for this particular dataset"? 
+> it is so bad
 
 ## 👉🏽 **Task**: Write djb2 Hash
 
@@ -97,26 +101,99 @@ for c in string:
     hash = hash * 33 + c
 ```
 
-We encourage you to look at a more efficient implementation than using multiplication. 
+We encourage you to look at a more efficient implementation than using multiplication.
+* We could use a bitwise shift (shift operator) instead of multiplication.
 
 > Discussion: How effective is the djb2 compared to others for this particular dataset? 
->
-> Second: What is a more efficient implementation? Do you think they picked 33 for this reason? 
-> Why would this matter? (reflect back to your assembly team activity). 
+>  Similar performance
+
+> Second: What is a more efficient implementation? Do you think they picked 33 for this reason?
+> Dan Bernstein tested a bunch of different numbers, and 33 proved to be best based on his empirical results. There are a variety of mathematical reasons behind this, and we understand some of them! See below...
+> `hash = ((hash << 5) + hash) + c; // hash * 33 + c`
+> 33 is an odd number that is represented with just 2 bits being set (the absolute minimum for an odd), 
+> which means many optimizations can be made to algorithms to speed them up. 
+> In this case, very expensive multiplications can be replaced with a single-cycle shift & add. 
+> (Multiplications are much faster now in 2021 than they were in 1991 when the algorithm was first designed) 
+> https://www.reddit.com/r/3Blue1Brown/comments/nljzi8/magic_number_33_in_djb2_hash_algorithm/
+
+> Why would this matter? (reflect back to your assembly team activity).
+> The number we chose for the hash function affects the number of collisions and speed. It makes sense to choose an optimal number rather than a random one (at least in this case, may change based on program/data names). So why 33? Judson knows! 
+
+> In assembly, multiplication is more expensive than addition and shifting. By picking 33, you can replace a multiply with a shift and add, making the hash function faster and more suitable for performance-critical code (like in hash tables).
 
 ## Tests
 
 Look at the file, and run various tests.
+# Hash Table Performance Statistics
+
+| File | Test Run | Collisions | Highest | Avg Length > 1 | Filled Spots | Load |
+|------|----------|------------|---------|----------------|--------------|------|
+| movie_ids_us_1000.txt | 1 | 999 | 81 | 38.42 | 27 | 0.00003 |
+| movie_ids_us_1000.txt | 2 | 0 | 0 | -nan | 1000 | 0.00100 |
+| movie_ids_us_1000.txt | 3 | 0 | 0 | -nan | 1000 | 0.00100 |
+| movie_ids_us_1000.txt | 4 | 0 | 0 | -nan | 1000 | 0.00100 |
+| movie_titles_us_1000.txt | 1 | 391 | 5 | 2.22 | 785 | 0.00078 |
+| movie_titles_us_1000.txt | 2 | 22 | 2 | 2.00 | 989 | 0.00099 |
+| movie_titles_us_1000.txt | 3 | 22 | 2 | 2.00 | 989 | 0.00099 |
+| movie_titles_us_1000.txt | 4 | 22 | 2 | 2.00 | 989 | 0.00099 |
+| movie_ids_us_10000.txt | 1 | 9999 | 697 | 285.69 | 36 | 0.00004 |
+| movie_ids_us_10000.txt | 2 | 142 | 2 | 2.00 | 9929 | 0.00993 |
+| movie_ids_us_10000.txt | 3 | 60 | 2 | 2.00 | 9970 | 0.00997 |
+| movie_ids_us_10000.txt | 4 | 114 | 2 | 2.00 | 9943 | 0.00994 |
+| movie_titles_us_10000.txt | 1 | 9289 | 22 | 5.51 | 2398 | 0.00240 |
+| movie_titles_us_10000.txt | 2 | 853 | 4 | 2.13 | 9547 | 0.00955 |
+| movie_titles_us_10000.txt | 3 | 866 | 4 | 2.13 | 9541 | 0.00954 |
+| movie_titles_us_10000.txt | 4 | 873 | 4 | 2.13 | 9537 | 0.00954 |
+| movie_ids_us_100000.txt | 1 | 99999 | 6029 | 2222.20 | 46 | 0.00005 |
+| movie_ids_us_100000.txt | 2 | 5528 | 3 | 2.01 | 97220 | 0.09722 |
+| movie_ids_us_100000.txt | 3 | 10674 | 4 | 2.05 | 94538 | 0.09454 |
+| movie_ids_us_100000.txt | 4 | 9346 | 4 | 2.03 | 95250 | 0.09525 |
+| movie_titles_us_100000.txt | 1 | 99124 | 144 | 28.63 | 4338 | 0.00434 |
+| movie_titles_us_100000.txt | 2 | 25197 | 17 | 2.43 | 85167 | 0.08517 |
+| movie_titles_us_100000.txt | 3 | 25195 | 17 | 2.43 | 85183 | 0.08518 |
+| movie_titles_us_100000.txt | 4 | 25210 | 17 | 2.43 | 85146 | 0.08515 |
+| movie_ids_us_unique.txt | 1 | 924735 | 38290 | 8723.92 | 107 | 0.00011 |
+| movie_ids_us_unique.txt | 2 | 569421 | 8 | 2.40 | 592710 | 0.59271 |
+| movie_ids_us_unique.txt | 3 | 557431 | 9 | 2.36 | 603710 | 0.60371 |
+| movie_ids_us_unique.txt | 4 | 558694 | 8 | 2.36 | 602868 | 0.60287 |
+| movie_titles_us_unique.txt | 1 | 924092 | 1082 | 129.12 | 8240 | 0.00824 |
+| movie_titles_us_unique.txt | 2 | 603672 | 200 | 3.07 | 518084 | 0.51808 |
+| movie_titles_us_unique.txt | 3 | 603876 | 200 | 3.07 | 517979 | 0.51798 |
+| movie_titles_us_unique.txt | 4 | 603322 | 201 | 3.07 | 518217 | 0.51822 |
 
 * What happens when you change SIZE?
+  * The load changes, usually increasing with greater size
+  * Highest chain length changes, usually increases with greater size
+  * 
+
 * Is there an optimal number/size, that increases your load factor but not too much (0.5-0.7)?
+  * it looks like the load factor approaches ideal size for the largest (~900000) datasets
+
 * What are the differences between the various functions?
   * Number of operations?
-  * Types of operations? 
+    * simple -> 1 addition per character
+    * DJB2 -> 1 multiplication (or shift+add) and 1 addition per character
+    * FNV -> 1 XOR and 1 multiplication per character
+    * One at a time -> Several additions, shifts, and XORs per character, plus some final mixing steps.
+  * Types of operations?
+    * simple -> Multiplication & addition
+    * DJB2 -> Multiplication
+    * FNV -> XOR and multiplication
+    * One at a time -> Addition, XOR, Shift
   * Do the ones that perform better come at an increased cost?
-* Would prime numbers be useful staring points?
+    * No! 
+    * Simple -> Technically the fastest, but
+   
+    * DJB2 -> Slightly more expensive than simple_hash, but much better distribution. Using shift+add makes it nearly as fast as simple_hash.
+    * FNV ->  Multiplication is a bit more expensive than addition, but still fast. Good distribution.
+    * One at a time -> Most expensive per character, but provides very good distribution and mixing.
 
-If you don't recall what some operators do - look them up! Discuss them (particular the XOR and the shifts). Why would these be useful? 
+* Would prime numbers be useful staring points?
+  * 
+
+If you don't recall what some operators do - look them up! Discuss them (particular the XOR and the shifts). Why would these be useful?
+* 
+
 As a reminder, hash algorithms care more about the binary bits, which thinking about it in a form of binary may help better understand why they may use those. 
 
 For example, take 5 in binary (101) and apply the operations to that small value, to get a better idea of the transformations that are happening. You can always either write a small see program, or perform the same operations in the python interactive interrupter to see what is going on! 
