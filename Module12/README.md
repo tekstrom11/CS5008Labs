@@ -182,18 +182,23 @@ Look at the file, and run various tests.
     * One at a time -> Addition, XOR, Shift
   * Do the ones that perform better come at an increased cost?
     * No! 
-    * Simple -> Technically the fastest, but has lots of collisions
-   
-   
+    * Simple -> Technically the fastest, but has lots of collisions.
     * DJB2 -> Slightly more expensive than simple_hash, but much better distribution. Using shift+add makes it nearly as fast as simple_hash.
     * FNV ->  Multiplication is a bit more expensive than addition, but still fast. Good distribution.
     * One at a time -> Most expensive per character, but provides very good distribution and mixing.
 
 * Would prime numbers be useful staring points?
-  * 
+  * Prime numbers are useful starting points for hash table sizes because they help minimize clustering and collisions, leading to better performance.
+    * More even distribution of hash values in the table
+    * Helps avoid patterns that lead to clustering
 
 If you don't recall what some operators do - look them up! Discuss them (particular the XOR and the shifts). Why would these be useful?
-* 
+* XOR and shift operators are essential in hash functions for mixing and spreading input bits, which leads to better hash distribution and fewer collisions
+* Shift -> can replace multiplication / division
+* XOR -> compares bits and returns 1 if they are the same, 0 if they are different
+  * Leads to 50/50 chance of 0 or 1 value, no matter what the input value is
+* They are faster and less computationally expensive compared to other methods
+  * Addition can cause overflow, multiplication can create patterns, and using OR/AND will lead towards a bias towards either 1 or 0 values
 
 As a reminder, hash algorithms care more about the binary bits, which thinking about it in a form of binary may help better understand why they may use those. 
 
@@ -215,8 +220,10 @@ You will never find a perfect hash, and there is often a cost of performance the
 For object oriented languages such as Java, those are built into the objects themselves to determine their hash. 
 
 > Discussion: 
-> Discuss a hashmap design. See if you can explain to each other how it is designed, and why it is effectively $O(1)$.  
+> Discuss a hashmap design. See if you can explain to each other how it is designed, and why it is effectively $O(1)$.
+> *This is where load factor comes into play.If there are no collisions, then we are definitely at $O(1). As long as our load factor is beneath around 0.75, our average operations will still be close to $O(1)$ -> $O(1) + O(0.75) = O(1)$* 
 > Can you also generate a case where access/insert/delete are $O(n)$?
+> Yes, if attempt to store all of our information to the same bucket - everything collides and we have one long chain with every other bucket being empty. Load factor would have to be very high!
 
 ## Leet Code Practice
 Take time practicing some of the past modules leet code. While you may not have time for everyone to do this, have a couple people practice "live coding". Live coding is a skill in interviews were you are asked to describe code **while** you are writing it. It can be a challenging skill, and it takes practice. I recommend that you setup a rotation of people to practice this skill within your team, ideally a couple every week. The other teams members can offer support, and then do a code review after a solution is generated. Discuss pros/cons of the leet code solution as well as other potential ways to solve the problem.
